@@ -20,8 +20,8 @@ exports.up = async function (knex) {
 				.notNullable()
 				.references('recipe_id')
 				.inTable('recipies')
-				.onDelete('RESTRICT')
-				.onUpdate('RESTRICT');
+				.onDelete('CASCADE')
+				.onUpdate('CASCADE');
 		})
 		.createTable('step_ingredients', (tbl) => {
 			tbl.increments('step_ingredient_id');
@@ -32,16 +32,16 @@ exports.up = async function (knex) {
 				.notNullable()
 				.references('step_id')
 				.inTable('steps')
-				.onDelete('RESTRICT')
-				.onUpdate('RESTRICT');
+				.onDelete('CASCADE')
+				.onUpdate('CASCADE');
 			tbl
 				.integer('ingredient_id')
 				.unsigned()
 				.notNullable()
 				.references('ingredient_id')
 				.inTable('ingredients')
-				.onDelete('RESTRICT')
-				.onUpdate('RESTRICT');
+				.onDelete('CASCADE')
+				.onUpdate('CASCADE');
 		});
 };
 
