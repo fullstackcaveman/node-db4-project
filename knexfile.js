@@ -1,9 +1,11 @@
+// Update with your config settings.
+
 module.exports = {
 	development: {
 		client: 'sqlite3',
-		useNullAsDefault: true, // needed for sqlite
+		useNullAsDefault: true,
 		connection: {
-			// filename: './data/zoos.db3',
+			filename: './data/recipies.db3',
 		},
 		migrations: {
 			directory: './data/migrations',
@@ -15,6 +17,38 @@ module.exports = {
 			afterCreate: (conn, done) => {
 				conn.run('PRAGMA foreign_keys = ON', done);
 			},
+		},
+	},
+
+	staging: {
+		client: 'postgresql',
+		connection: {
+			database: 'my_db',
+			user: 'username',
+			password: 'password',
+		},
+		pool: {
+			min: 2,
+			max: 10,
+		},
+		migrations: {
+			tableName: 'knex_migrations',
+		},
+	},
+
+	production: {
+		client: 'postgresql',
+		connection: {
+			database: 'my_db',
+			user: 'username',
+			password: 'password',
+		},
+		pool: {
+			min: 2,
+			max: 10,
+		},
+		migrations: {
+			tableName: 'knex_migrations',
 		},
 	},
 };
